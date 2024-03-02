@@ -1,0 +1,8 @@
+.productItem__info {
+  display: flex;
+  flex-direction: column;
+
+  &__name {
+    font-size: 12px;
+  }
+}
