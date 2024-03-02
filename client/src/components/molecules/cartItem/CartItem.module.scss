@@ -1,0 +1,45 @@
+.cart__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.cart__trash__svg {
+  align-self: flex-end;
+}
+
+.cart__name {
+  font-size: 20px;
+}
+
+.cart__price {
+  color: #333333;
+  align-self: flex-end;
+}
+
+.number__input__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.number__input {
+  width: 72px;
+  height: 58px;
+  border: 1px solid #dddddd;
+  text-align: center;
+  font-size: 24px;
+}
+
+.number__input__button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 12px;
+  border: 1px solid #dddddd;
+  font-size: 100%;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
+}
