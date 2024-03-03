@@ -1,0 +1,43 @@
+.primary {
+  background: #2ac1bc;
+  font-size: 24px;
+  color: white;
+  width: 100%;
+  padding: 20px;
+
+  &__small {
+    background: #2ac1bc;
+    font-size: 20px;
+    color: white;
+    padding: 14px 28px;
+  }
+}
+.nav {
+  font-weight: 500;
+  font-size: 24px;
+  color: #ffffff;
+}
+
+.number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 12px;
+  border: 1px solid #dddddd;
+  font-size: 100%;
+  cursor: pointer;
+  &:focus {
+    outline: none;
+  }
+}
+.delete {
+  padding: 12px 22px;
+  border: 1px solid #bbbbbb;
+}
+.product {
+  width: 100%;
+  padding: 24px;
+  background: #73675c;
+  font-size: 24px;
+  color: white;
+}
