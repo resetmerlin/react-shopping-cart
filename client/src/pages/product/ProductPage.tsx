@@ -20,10 +20,10 @@ export default function ProductPage() {
   const productsInfo = useAppSelector((state) => state.productsInfo);
   const productInfo = useAppSelector((state) => state.productInfo);
   const { products } = productsInfo;
-  const { product: singleProduct } = productInfo;
+  const { product: dynamicProduct } = productInfo;
 
-  /** product value using products; multiple product data */
-  const product = useMemo(
+  /** product value using exisiting products data, this is why the name is static */
+  const staticProduct = useMemo(
     () =>
       [...products] &&
       ([...products].find((val) => val.id === productId) as IProduct),
@@ -35,34 +35,34 @@ export default function ProductPage() {
     if (!productId) navigate('/');
   }, [productId, navigate]);
 
-  // if there is no single product data, fetch single product
+  // if there is no single product data, fetch(dynamic) single product
   useEffect(() => {
     let ignore = false;
-    if (!ignore && !product && productId) {
+    if (!ignore && !staticProduct && productId) {
       dispatch(getProductAction(productId));
     }
 
     return () => {
       ignore = true;
     };
-  }, [dispatch, productId, product, products]);
+  }, [dispatch, productId, staticProduct, products]);
 
   return (
     <div className="root">
       <Header />
       <Product.Section>
-        {!singleProduct && !product ? (
+        {!dynamicProduct && !staticProduct ? (
           <Loader />
         ) : (
           <ProductItemDetails
-            id={product?.id || (singleProduct as IProduct)?.id}
+            id={staticProduct?.id || (dynamicProduct as IProduct)?.id}
             addToCart={useAddToCart}
             dispatch={dispatch}
             navigate={navigate}
-            name={product?.name || (singleProduct as IProduct)?.name}
-            price={product?.price || (singleProduct as IProduct)?.price}
+            name={staticProduct?.name || (dynamicProduct as IProduct)?.name}
+            price={staticProduct?.price || (dynamicProduct as IProduct)?.price}
             imageUrl={
-              product?.imageUrl || (singleProduct as IProduct)?.imageUrl
+              staticProduct?.imageUrl || (dynamicProduct as IProduct)?.imageUrl
             }
           />
         )}
