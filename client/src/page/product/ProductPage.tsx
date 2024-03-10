@@ -1,9 +1,9 @@
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
 import { Header, Loader, Product, ProductItemDetails } from '../../components';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
 import { Product as IProduct } from '../../types';
-import { cartAddAction, productAction } from '../../actions';
+import { productAction } from '../../actions';
 
 export default function ProductPage() {
   const params = useParams();
@@ -40,17 +40,6 @@ export default function ProductPage() {
     };
   }, [dispatch, productId, product, products]);
 
-  const addToCart = (
-    name: string,
-    id: number,
-    price: number,
-    imageUrl: string
-  ) => {
-    const cart = { name, id, price, imageUrl };
-    dispatch(cartAddAction(cart));
-    navigate('/cart');
-  };
-
   return (
     <div className="root">
       <Header />
@@ -60,7 +49,9 @@ export default function ProductPage() {
         ) : (
           <ProductItemDetails
             id={product?.id || (singleProduct as IProduct)?.id}
-            addToCart={addToCart}
+            addToCart={useAddToCart}
+            dispatch={dispatch}
+            navigate={navigate}
             name={product?.name || (singleProduct as IProduct)?.name}
             price={product?.price || (singleProduct as IProduct)?.price}
             imageUrl={

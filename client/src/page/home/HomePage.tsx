@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, Home, Loader, ProductItem } from '../../components';
-import { cartAddAction, productsAction } from '../../actions';
-import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getProductsAction } from '../../actions';
+import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
 import { Product } from '../../types';
 
 export default function HomePage() {
@@ -11,28 +11,17 @@ export default function HomePage() {
   const productsInfo = useAppSelector((state) => state.productsInfo);
   const { loading, products } = productsInfo;
 
-  // dispatch action to fetch products
+  // if there is no products,fetch it!
   useEffect(() => {
     let ignore = false;
     if (!ignore && !products?.length) {
-      dispatch(productsAction());
+      dispatch(getProductsAction());
     }
 
     return () => {
       ignore = true;
     };
   }, [dispatch, products]);
-
-  const addToCart = (
-    name: string,
-    id: number,
-    price: number,
-    imageUrl: string
-  ) => {
-    const product = { name, id, price, imageUrl };
-    dispatch(cartAddAction(product));
-    navigate('/cart');
-  };
 
   return (
     <div className="root">
@@ -49,7 +38,9 @@ export default function HomePage() {
                 name={product?.name}
                 price={product?.price}
                 imageUrl={product?.imageUrl}
-                addToCart={addToCart}
+                navigate={navigate}
+                dispatch={dispatch}
+                addToCart={useAddToCart}
               />
             );
           })
