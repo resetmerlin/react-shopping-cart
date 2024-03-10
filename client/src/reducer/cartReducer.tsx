@@ -11,7 +11,7 @@ import {
   CART_DELETE_FAIL,
 } from '../constants';
 import { CartAction, CartAddAction, CartDeleteAction } from '../actions';
-import { Cart } from '../types';
+import { Cart, GetCartResponse } from '../types';
 
 type CartsState = {
   carts: Cart[];
@@ -47,10 +47,20 @@ export const cartsReducers = (
       return state;
   }
 };
-const cartAddInitialState = {};
+
+type CartAddedState = {
+  carts: GetCartResponse[];
+  loading: boolean;
+  error?: string | null;
+};
+
+const cartAddInitialState = {
+  loading: true,
+  carts: [],
+};
 
 export const cartAddReducers = (
-  state = cartAddInitialState,
+  state: CartAddedState = cartAddInitialState,
   action: CartAddAction
 ) => {
   switch (action.type) {
