@@ -61,28 +61,28 @@ export const getOrdersAction =
     }
   };
 
-type AddOrderRequestAction = {
+type AddOrdersRequestAction = {
   type: typeof ORDER_ADD_REQUEST;
 };
 
-type AddOrderSuccessAction = {
+type AddOrdersSuccessAction = {
   type: typeof ORDER_ADD_SUCCESS;
   payload: OrderDetail;
 };
 
-type AddOrderFailAction = {
+type AddOrdersFailAction = {
   type: typeof ORDER_ADD_FAIL;
   payload: string;
 };
 
-export type AddOrderAction =
-  | AddOrderRequestAction
-  | AddOrderSuccessAction
-  | AddOrderFailAction;
+export type AddOrdersAction =
+  | AddOrdersRequestAction
+  | AddOrdersSuccessAction
+  | AddOrdersFailAction;
 
-export const addOrderAction =
+export const addOrdersAction =
   (orderDetails: OrderDetail[]) =>
-  async (dispatch: Dispatch<AddOrderAction>) => {
+  async (dispatch: Dispatch<AddOrdersAction>) => {
     try {
       dispatch({ type: ORDER_ADD_REQUEST });
 
