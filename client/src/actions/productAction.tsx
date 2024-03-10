@@ -82,7 +82,7 @@ export type ProductAction =
   | ProductSuccessAction
   | ProductFailAction;
 
-export const productAction =
+export const getProductAction =
   (id: number) => async (dispatch: Dispatch<ProductAction>) => {
     try {
       dispatch({ type: PRODUCT_REQUEST });

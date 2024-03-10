@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Header, Loader, Product, ProductItemDetails } from '../../components';
 import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
 import { IProduct } from '../../types';
-import { productAction } from '../../actions';
+import { getProductAction } from '../../actions';
 /**
  *  ## Responsible for conducting business logic of the product page
  *
@@ -39,7 +39,7 @@ export default function ProductPage() {
   useEffect(() => {
     let ignore = false;
     if (!ignore && !product && productId) {
-      dispatch(productAction(productId));
+      dispatch(getProductAction(productId));
     }
 
     return () => {
