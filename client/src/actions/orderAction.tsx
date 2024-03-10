@@ -1,7 +1,15 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
-import { ORDERS_REQUEST, ORDERS_SUCCESS, ORDERS_FAIL } from '../constants';
-import { Order } from '../types';
+import {
+  ORDERS_REQUEST,
+  ORDERS_SUCCESS,
+  ORDERS_FAIL,
+  ORDER_ADD_REQUEST,
+  ORDER_ADD_SUCCESS,
+  ORDER_ADD_FAIL,
+  ORDER_DETAILS_ADD,
+} from '../constants';
+import { Order, OrderDetail } from '../types';
 
 type OrdersRequestAction = {
   type: typeof ORDERS_REQUEST;
@@ -51,4 +59,83 @@ export const getOrdersAction =
         });
       }
     }
+  };
+
+type AddOrderRequestAction = {
+  type: typeof ORDER_ADD_REQUEST;
+};
+
+type AddOrderSuccessAction = {
+  type: typeof ORDER_ADD_SUCCESS;
+  payload: OrderDetail;
+};
+
+type AddOrderFailAction = {
+  type: typeof ORDER_ADD_FAIL;
+  payload: string;
+};
+
+export type AddOrderAction =
+  | AddOrderRequestAction
+  | AddOrderSuccessAction
+  | AddOrderFailAction;
+
+export const addOrderAction =
+  (orderDetails: OrderDetail[]) =>
+  async (dispatch: Dispatch<AddOrderAction>) => {
+    try {
+      dispatch({ type: ORDER_ADD_REQUEST });
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      };
+
+      const body = {
+        orderDetails,
+      };
+
+      const { data } = await axios.post<OrderDetail>(
+        'http://localhost:3003/orders',
+        body,
+        config
+      );
+
+      dispatch({
+        type: ORDER_ADD_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+        dispatch({
+          type: ORDER_ADD_FAIL,
+          payload: message,
+        });
+      } else {
+        // Handle non-Axios errors
+        dispatch({
+          type: ORDER_ADD_FAIL,
+          payload: 'An unknown error occurred',
+        });
+      }
+    }
+  };
+
+export type AddOrderDetailsAction = {
+  type: typeof ORDER_DETAILS_ADD;
+  payload: OrderDetail[];
+};
+
+export const addOrderDetailsAction =
+  (orderDetails: OrderDetail[]) =>
+  async (dispatch: Dispatch<AddOrderDetailsAction>) => {
+    dispatch({
+      type: ORDER_DETAILS_ADD,
+      payload: orderDetails,
+    });
   };
