@@ -1,17 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, NavigateFunction } from 'react-router-dom';
 import styles from './ProductItem.module.scss';
 import { Button } from '../../atom';
+import { AppDispatch } from '../../../store';
 
 type IProps = {
   id: number;
   name: string;
   price: number;
   imageUrl: string;
+  dispatch: AppDispatch;
+  navigate: NavigateFunction;
   addToCart: (
     name: string,
     id: number,
     price: number,
-    imageUrl: string
+    imageUrl: string,
+    navigate: NavigateFunction,
+    dispatch: AppDispatch
   ) => void;
 };
 export default function ProductItem({
@@ -20,6 +25,8 @@ export default function ProductItem({
   price,
   imageUrl,
   addToCart,
+  dispatch,
+  navigate,
 }: IProps) {
   return (
     <div>
@@ -38,7 +45,9 @@ export default function ProductItem({
         <Button
           type="button"
           purpose="delete"
-          onClick={() => addToCart(name, id, price, imageUrl)}
+          onClick={() =>
+            addToCart(name, id, price, imageUrl, navigate, dispatch)
+          }
         >
           <img src="./svgs/cart.svg" alt="장바구니" />
         </Button>

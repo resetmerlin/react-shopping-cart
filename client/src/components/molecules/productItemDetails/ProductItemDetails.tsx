@@ -1,3 +1,5 @@
+import { NavigateFunction } from 'react-router-dom';
+import { AppDispatch } from '../../../store';
 import { Button } from '../../atom';
 import styles from './ProductItemDetails.module.scss';
 
@@ -6,11 +8,15 @@ type IProps = {
   price: number;
   id: number;
   imageUrl: string;
+  dispatch: AppDispatch;
+  navigate: NavigateFunction;
   addToCart: (
     name: string,
     id: number,
     price: number,
-    imageUrl: string
+    imageUrl: string,
+    navigate: NavigateFunction,
+    dispatch: AppDispatch
   ) => void;
 };
 
@@ -20,6 +26,8 @@ export default function ProductItemDetails({
   imageUrl,
   id,
   addToCart,
+  dispatch,
+  navigate,
 }: IProps) {
   return (
     <div className="flex-col-center w-520">
@@ -37,7 +45,7 @@ export default function ProductItemDetails({
         className="flex-center mt-20"
         type="submit"
         purpose="product"
-        onClick={() => addToCart(name, id, price, imageUrl)}
+        onClick={() => addToCart(name, id, price, imageUrl, navigate, dispatch)}
       >
         장바구니
       </Button>
