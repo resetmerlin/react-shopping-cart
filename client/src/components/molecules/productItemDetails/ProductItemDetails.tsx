@@ -1,28 +1,46 @@
+import { Button } from '../../atom';
 import styles from './ProductItemDetails.module.scss';
 
-export default function ProductItemDetails() {
+type IProps = {
+  name: string;
+  price: number;
+  id: number;
+  imageUrl: string;
+  addToCart: (
+    name: string,
+    id: number,
+    price: number,
+    imageUrl: string
+  ) => void;
+};
+
+export default function ProductItemDetails({
+  name,
+  price,
+  imageUrl,
+  id,
+  addToCart,
+}: IProps) {
   return (
     <div className="flex-col-center w-520">
-      <img
-        className="w-480 h-480 mb-10"
-        src="./assets/images/product.png"
-        alt="PET보틀-정사각(420ml)"
-      />
+      <img className="w-480 h-480 mb-10" src={imageUrl} alt={name} />
       <div className={styles.product__detail__info}>
-        <span className={styles.product__detail__info__name}>
-          PET보틀-정사각(420ml)
-        </span>
+        <span className={styles.product__detail__info__name}>{name}</span>
         <hr className="divide-line-gray my-20" />
         <div className="flex justify-between">
           <span>금액</span>
-          <span className={styles.product__detail__info__price}>43,000원</span>
+          <span className={styles.product__detail__info__price}>{price}</span>
         </div>
       </div>
 
-      {/*  Need to make into Atom */}
-      <button className="product-detail-button flex-center mt-20" type="submit">
+      <Button
+        className="flex-center mt-20"
+        type="submit"
+        purpose="product"
+        onClick={() => addToCart(name, id, price, imageUrl)}
+      >
         장바구니
-      </button>
+      </Button>
     </div>
   );
 }
