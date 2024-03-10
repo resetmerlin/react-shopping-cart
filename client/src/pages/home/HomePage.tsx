@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Header, Home, Loader, ProductItem } from '../../components';
 import { getProductsAction } from '../../actions';
 import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
-import { Product } from '../../types';
+import { IProduct } from '../../types';
 
 /**
  *  ## Responsible for conducting business logic of the home page
@@ -37,7 +37,7 @@ export default function HomePage() {
         {loading ? (
           <Loader />
         ) : (
-          products?.map((product: Product) => {
+          products?.map((product: IProduct) => {
             return (
               <ProductItem
                 key={product?.id}

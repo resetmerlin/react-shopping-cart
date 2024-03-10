@@ -9,7 +9,7 @@ import {
   ORDER_ADD_FAIL,
   STATIC_ORDER_ADD,
 } from '../constants';
-import { Order, OrderDetail } from '../types';
+import { IOrder, IOrderDetail } from '../types';
 
 type OrdersRequestAction = {
   type: typeof ORDERS_REQUEST;
@@ -17,7 +17,7 @@ type OrdersRequestAction = {
 
 type OrdersSuccessAction = {
   type: typeof ORDERS_SUCCESS;
-  payload: Order[];
+  payload: IOrder[];
 };
 
 type OrdersFailAction = {
@@ -35,7 +35,9 @@ export const getOrdersAction =
     try {
       dispatch({ type: ORDERS_REQUEST });
 
-      const { data } = await axios.get<Order[]>('http://localhost:3003/orders');
+      const { data } = await axios.get<IOrder[]>(
+        'http://localhost:3003/orders'
+      );
 
       dispatch({
         type: ORDERS_SUCCESS,
@@ -67,7 +69,7 @@ type AddOrdersRequestAction = {
 
 type AddOrdersSuccessAction = {
   type: typeof ORDER_ADD_SUCCESS;
-  payload: OrderDetail;
+  payload: IOrderDetail;
 };
 
 type AddOrdersFailAction = {
@@ -81,7 +83,7 @@ export type AddOrdersAction =
   | AddOrdersFailAction;
 
 export const addOrdersAction =
-  (orderDetails: OrderDetail[]) =>
+  (orderDetails: IOrderDetail[]) =>
   async (dispatch: Dispatch<AddOrdersAction>) => {
     try {
       dispatch({ type: ORDER_ADD_REQUEST });
@@ -96,7 +98,7 @@ export const addOrdersAction =
         orderDetails,
       };
 
-      const { data } = await axios.post<OrderDetail>(
+      const { data } = await axios.post<IOrderDetail>(
         'http://localhost:3003/orders',
         body,
         config
@@ -128,11 +130,11 @@ export const addOrdersAction =
 
 export type AddStaticOrdersAction = {
   type: typeof STATIC_ORDER_ADD;
-  payload: OrderDetail[];
+  payload: IOrderDetail[];
 };
 
 export const addStaticOrdersAction =
-  (orderDetails: OrderDetail[]) =>
+  (orderDetails: IOrderDetail[]) =>
   async (dispatch: Dispatch<AddStaticOrdersAction>) => {
     dispatch({
       type: STATIC_ORDER_ADD,

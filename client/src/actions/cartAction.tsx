@@ -11,7 +11,7 @@ import {
   CART_DELETE_SUCCESS,
   CART_DELETE_FAIL,
 } from '../constants';
-import { Cart, Product } from '../types';
+import { ICart, IProduct } from '../types';
 
 type CartRequestAction = {
   type: typeof CART_REQUEST;
@@ -19,7 +19,7 @@ type CartRequestAction = {
 
 type CartSuccessAction = {
   type: typeof CART_SUCCESS;
-  payload: Cart[];
+  payload: ICart[];
 };
 
 type CartFailAction = {
@@ -33,7 +33,7 @@ export const cartsAction = () => async (dispatch: Dispatch<CartAction>) => {
   try {
     dispatch({ type: CART_REQUEST });
 
-    const { data } = await axios.get<Cart[]>('http://localhost:3003/carts');
+    const { data } = await axios.get<ICart[]>('http://localhost:3003/carts');
 
     dispatch({
       type: CART_SUCCESS,
@@ -65,7 +65,7 @@ type CartAddRequestAction = {
 
 type CartAddSuccessAction = {
   type: typeof CART_ADD_SUCCESS;
-  payload: Cart;
+  payload: ICart;
 };
 
 type CartAddFailAction = {
@@ -79,7 +79,7 @@ export type CartAddAction =
   | CartAddFailAction;
 
 export const addToCartAction =
-  (product: Product) => async (dispatch: Dispatch<CartAddAction>) => {
+  (product: IProduct) => async (dispatch: Dispatch<CartAddAction>) => {
     try {
       dispatch({ type: CART_ADD_REQUEST });
 
@@ -93,7 +93,7 @@ export const addToCartAction =
         product,
       };
 
-      const { data } = await axios.post<Cart>(
+      const { data } = await axios.post<ICart>(
         'http://localhost:3003/carts',
         body,
         config

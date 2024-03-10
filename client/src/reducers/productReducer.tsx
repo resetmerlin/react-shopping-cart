@@ -8,10 +8,10 @@ import {
   PRODUCT_FAIL,
 } from '../constants';
 import { ProductAction, ProductsAction } from '../actions';
-import { Product } from '../types';
+import { IProduct } from '../types';
 
 type ProductsState = {
-  products: Product[];
+  products: IProduct[];
   loading: boolean;
   error?: string | null;
 };
@@ -46,7 +46,7 @@ export const productsReducers = (
 };
 
 type ProductState = {
-  product: Product | object;
+  product: IProduct | object;
   loading: boolean;
   error?: string | null;
 };

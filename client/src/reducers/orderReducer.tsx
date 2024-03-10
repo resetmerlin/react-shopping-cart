@@ -13,10 +13,10 @@ import {
   AddStaticOrdersAction,
   AddOrdersAction,
 } from '../actions';
-import { Order, OrderDetail } from '../types';
+import { IOrder, IOrderDetail } from '../types';
 
 type OrdersState = {
-  orders: Order[];
+  orders: IOrder[];
   loading: boolean;
   error?: string | null;
 };
@@ -50,7 +50,7 @@ export const ordersReducers = (
   }
 };
 type OrderAddedState = {
-  orderDetails: OrderDetail | object;
+  orderDetails: IOrderDetail | object;
   loading: boolean;
   error?: string | null;
 };
@@ -83,7 +83,7 @@ export const orderAddedReducers = (
   }
 };
 type AddStaticOrderState = {
-  orders: OrderDetail[];
+  orders: IOrderDetail[];
   loading: boolean;
   error?: string | null;
 };

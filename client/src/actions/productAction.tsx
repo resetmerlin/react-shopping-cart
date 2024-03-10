@@ -10,7 +10,7 @@ import {
   PRODUCT_SUCCESS,
   PRODUCT_FAIL,
 } from '../constants';
-import { Product } from '../types';
+import { IProduct } from '../types';
 
 type ProductsRequestAction = {
   type: typeof PRODUCTS_REQUEST;
@@ -18,7 +18,7 @@ type ProductsRequestAction = {
 
 type ProductsSuccessAction = {
   type: typeof PRODUCTS_SUCCESS;
-  payload: Product[];
+  payload: IProduct[];
 };
 
 type ProductsFailAction = {
@@ -36,7 +36,7 @@ export const getProductsAction =
     try {
       dispatch({ type: PRODUCTS_REQUEST });
 
-      const { data } = await axios.get<Product[]>(
+      const { data } = await axios.get<IProduct[]>(
         'http://localhost:3003/products'
       );
 
@@ -69,7 +69,7 @@ type ProductRequestAction = {
 
 type ProductSuccessAction = {
   type: typeof PRODUCT_SUCCESS;
-  payload: Product;
+  payload: IProduct;
 };
 
 type ProductFailAction = {
@@ -87,7 +87,7 @@ export const productAction =
     try {
       dispatch({ type: PRODUCT_REQUEST });
 
-      const { data } = await axios.get<Product>(
+      const { data } = await axios.get<IProduct>(
         `http://localhost:3003/products/${id}`
       );
 

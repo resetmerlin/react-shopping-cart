@@ -11,10 +11,10 @@ import {
   CART_DELETE_FAIL,
 } from '../constants';
 import { CartAction, CartAddAction, CartDeleteAction } from '../actions';
-import { Cart, GetCartResponse } from '../types';
+import { ICart, GetCartResponse } from '../types';
 
 type CartsState = {
-  carts: Cart[];
+  carts: ICart[];
   loading: boolean;
   error?: string | null;
 };

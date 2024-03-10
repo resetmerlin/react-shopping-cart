@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Header, Loader, Product, ProductItemDetails } from '../../components';
 import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
-import { Product as IProduct } from '../../types';
+import { IProduct } from '../../types';
 import { productAction } from '../../actions';
 /**
  *  ## Responsible for conducting business logic of the product page

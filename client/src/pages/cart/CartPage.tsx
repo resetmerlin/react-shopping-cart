@@ -15,7 +15,7 @@ import {
   Loader,
 } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { OrderDetail } from '../../types';
+import { IOrderDetail } from '../../types';
 
 export default function CartPage() {
   const dispatch = useAppDispatch();
@@ -55,7 +55,7 @@ export default function CartPage() {
     .filter((cart) => checkedIdLists.includes(cart.id))
     .map((cart) => ({
       ...cart,
-      product: cart.product as OrderDetail, // Cast product to OrderDetail
+      product: cart.product as IOrderDetail, // Cast product to OrderDetail
     }));
 
   const selectAllItems = (e: React.FormEvent<HTMLInputElement>) => {};
@@ -73,7 +73,7 @@ export default function CartPage() {
             ...cart.product,
             price,
             quantity,
-          } as OrderDetail,
+          } as IOrderDetail,
         };
       }
       return cart;
