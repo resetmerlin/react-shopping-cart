@@ -78,7 +78,7 @@ export type CartAddAction =
   | CartAddSuccessAction
   | CartAddFailAction;
 
-export const cartAddAction =
+export const addToCartAction =
   (product: Product) => async (dispatch: Dispatch<CartAddAction>) => {
     try {
       dispatch({ type: CART_ADD_REQUEST });
