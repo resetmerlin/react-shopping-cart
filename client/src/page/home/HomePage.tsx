@@ -11,6 +11,7 @@ export default function HomePage() {
   const productsInfo = useAppSelector((state) => state.productsInfo);
   const { loading, products } = productsInfo;
 
+  // dispatch action to fetch products
   useEffect(() => {
     let ignore = false;
     if (!ignore && !products?.length) {
