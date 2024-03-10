@@ -3,11 +3,14 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { ThunkMiddleware, thunk } from 'redux-thunk';
 import { composeWithDevTools } from '@redux-devtools/extension';
 import {
+  ordersReducers,
   cartAddReducers,
   cartDeleteReducers,
   cartsReducers,
   productReducers,
   productsReducers,
+  addOrderReducers,
+  addOrderDetailsReducers,
 } from './reducer';
 
 const reducer = combineReducers({
@@ -16,6 +19,9 @@ const reducer = combineReducers({
   cartsInfo: cartsReducers,
   cartAddInfo: cartAddReducers,
   cartDeleteInfo: cartDeleteReducers,
+  ordersInfo: ordersReducers,
+  addOrderInfo: addOrderReducers,
+  addOrderDetails: addOrderDetailsReducers,
 });
 
 const initialState = {};
