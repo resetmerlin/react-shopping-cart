@@ -1,10 +1,17 @@
-import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useMemo } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Header, Loader, Product, ProductItemDetails } from '../../components';
 import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
 import { Product as IProduct } from '../../types';
 import { productAction } from '../../actions';
-
+/**
+ *  ## Responsible for conducting business logic of the product page
+ *
+ * - Renders given component
+ * - Add dependencies from react, react router dom, components, actions, hooks, types
+ * - Find single product using existing products data based on the params, if there is no single product, fetch it
+ * - Go home page if there is no params
+ */
 export default function ProductPage() {
   const params = useParams();
   const navigate = useNavigate();
