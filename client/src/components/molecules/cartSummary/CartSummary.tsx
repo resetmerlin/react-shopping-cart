@@ -1,6 +1,16 @@
+import { Button, HightlightText } from '../../atom';
 import styles from './CartSummary.module.scss';
 
-export default function CartSummary() {
+type IProps = {
+  cartPrice: number;
+  cartsLength: number;
+  addToOrder: () => void;
+};
+export default function CartSummary({
+  cartPrice,
+  cartsLength,
+  addToOrder,
+}: IProps) {
   return (
     <>
       <div className={styles.cart__right__group__top}>
@@ -9,14 +19,18 @@ export default function CartSummary() {
       <hr className="divide-line-thin" />
       <div className="cart-right-section__bottom">
         <div className="flex justify-between p-20 mt-20">
-          <span className="highlight-text">결제예상금액</span>
-          <span className="highlight-text">21,800원</span>
+          <HightlightText>결제예상금액</HightlightText>
+          <HightlightText>{cartPrice}원</HightlightText>
         </div>
         <div className="flex-center mt-30 mx-10">
-          {/* Need to make into Atom */}
-          <button className="primary-button flex-center" type="button">
-            주문하기(3개)
-          </button>
+          <Button
+            className="flex-center"
+            type="button"
+            purpose="primary"
+            onClick={addToOrder}
+          >
+            주문하기({cartsLength}개)
+          </Button>
         </div>
       </div>
     </>
