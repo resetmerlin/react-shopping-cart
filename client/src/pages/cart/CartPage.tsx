@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import {
   addStaticOrdersAction,
   cartDeleteAction,
-  cartsAction,
+  getCartsAction,
 } from '../../actions';
 import {
   Cart,
@@ -104,23 +104,23 @@ export default function CartPage() {
     navigate('/order');
   };
 
-  // if there is no checked set total price to 0
+  // if there is no checked lists, set total price to 0
   useEffect(() => {
     if (!checkedIdLists.length) {
       setTotalPrice(0);
     }
   }, [checkedIdLists.length]);
 
-  // If cart is deleted get cart items
+  // If cart data is deleted, update cart items
   useEffect(() => {
     if (!cartDeleteLoading && cartDeleted) {
-      dispatch(cartsAction());
+      dispatch(getCartsAction());
     }
   }, [cartDeleteLoading, cartDeleted, dispatch]);
 
   // If user enters cart page first time, get cart items
   useEffect(() => {
-    dispatch(cartsAction());
+    dispatch(getCartsAction());
   }, [dispatch]);
 
   return (

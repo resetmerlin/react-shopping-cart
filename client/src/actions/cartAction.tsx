@@ -29,7 +29,7 @@ type CartFailAction = {
 
 export type CartAction = CartRequestAction | CartSuccessAction | CartFailAction;
 
-export const cartsAction = () => async (dispatch: Dispatch<CartAction>) => {
+export const getCartsAction = () => async (dispatch: Dispatch<CartAction>) => {
   try {
     dispatch({ type: CART_REQUEST });
 
