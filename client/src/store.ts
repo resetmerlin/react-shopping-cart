@@ -10,7 +10,7 @@ import {
   productReducers,
   productsReducers,
   addOrderReducers,
-  addOrderDetailsReducers,
+  addStaticOrdersReducers,
 } from './reducer';
 
 const reducer = combineReducers({
@@ -21,7 +21,7 @@ const reducer = combineReducers({
   cartDeleteInfo: cartDeleteReducers,
   ordersInfo: ordersReducers,
   addOrderInfo: addOrderReducers,
-  addOrderDetails: addOrderDetailsReducers,
+  addStaticOrderInfo: addStaticOrdersReducers,
 });
 
 const initialState = {};

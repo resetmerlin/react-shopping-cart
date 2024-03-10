@@ -7,7 +7,7 @@ import {
   ORDER_ADD_REQUEST,
   ORDER_ADD_SUCCESS,
   ORDER_ADD_FAIL,
-  ORDER_DETAILS_ADD,
+  STATIC_ORDER_ADD,
 } from '../constants';
 import { Order, OrderDetail } from '../types';
 
@@ -126,16 +126,16 @@ export const addOrderAction =
     }
   };
 
-export type AddOrderDetailsAction = {
-  type: typeof ORDER_DETAILS_ADD;
+export type AddStaticOrdersAction = {
+  type: typeof STATIC_ORDER_ADD;
   payload: OrderDetail[];
 };
 
-export const addOrderDetailsAction =
+export const addStaticOrdersAction =
   (orderDetails: OrderDetail[]) =>
-  async (dispatch: Dispatch<AddOrderDetailsAction>) => {
+  async (dispatch: Dispatch<AddStaticOrdersAction>) => {
     dispatch({
-      type: ORDER_DETAILS_ADD,
+      type: STATIC_ORDER_ADD,
       payload: orderDetails,
     });
   };

@@ -8,8 +8,10 @@ import {
 import { useAppSelector } from '../../hooks';
 
 export default function OrderPage() {
-  const addOrderDetails = useAppSelector((state) => state.ordersInfo);
-  const { orders } = addOrderDetails;
+  const addStaticOrderInfo = useAppSelector(
+    (state) => state.addStaticOrderInfo
+  );
+  const { orders } = addStaticOrderInfo;
 
   return (
     <div className="root">

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  addOrderDetailsAction,
+  addStaticOrdersAction,
   cartDeleteAction,
   cartsAction,
 } from '../../actions';
@@ -55,7 +55,7 @@ export default function CartPage() {
     .filter((cart) => checkedIdLists.includes(cart.id))
     .map((cart) => ({
       ...cart,
-      product: cart.product as OrderDetail, // Cast product to ProductWithQuantity
+      product: cart.product as OrderDetail, // Cast product to OrderDetail
     }));
 
   const selectAllItems = (e: React.FormEvent<HTMLInputElement>) => {};
@@ -100,7 +100,7 @@ export default function CartPage() {
       };
     });
 
-    dispatch(addOrderDetailsAction(orderDetails));
+    dispatch(addStaticOrdersAction(orderDetails));
     navigate('/order');
   };
 

@@ -6,12 +6,12 @@ import {
   ORDER_ADD_REQUEST,
   ORDER_ADD_SUCCESS,
   ORDER_ADD_FAIL,
-  ORDER_DETAILS_ADD,
+  STATIC_ORDER_ADD,
 } from '../constants';
 import {
   OrdersAction,
   AddOrderAction,
-  AddOrderDetailsAction,
+  AddStaticOrdersAction,
 } from '../actions';
 import { Order, OrderDetail } from '../types';
 
@@ -82,24 +82,24 @@ export const addOrderReducers = (
       return state;
   }
 };
-type AddOrderDetailState = {
+type AddStaticOrderState = {
   orders: OrderDetail[];
   loading: boolean;
   error?: string | null;
 };
 
-const AddOrderDetailsInitialState: AddOrderDetailState = {
+const AddStaticOrderInitialState: AddStaticOrderState = {
   orders: [],
   loading: true,
   error: null,
 };
 
-export const addOrderDetailsReducers = (
-  state: AddOrderDetailState = AddOrderDetailsInitialState,
-  action: AddOrderDetailsAction
+export const addStaticOrdersReducers = (
+  state: AddStaticOrderState = AddStaticOrderInitialState,
+  action: AddStaticOrdersAction
 ) => {
   switch (action.type) {
-    case ORDER_DETAILS_ADD:
+    case STATIC_ORDER_ADD:
       return {
         orders: action.payload,
       };
