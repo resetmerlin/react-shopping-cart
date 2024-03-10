@@ -10,8 +10,8 @@ import {
 } from '../constants';
 import {
   OrdersAction,
-  AddOrderAction,
   AddStaticOrdersAction,
+  AddOrdersAction,
 } from '../actions';
 import { Order, OrderDetail } from '../types';
 
@@ -49,20 +49,20 @@ export const ordersReducers = (
       return state;
   }
 };
-type AddOrderState = {
+type OrderAddedState = {
   orderDetails: OrderDetail | object;
   loading: boolean;
   error?: string | null;
 };
 
-const AddOrderInitialState: AddOrderState = {
+const OrderAddedInitialState: OrderAddedState = {
   orderDetails: {},
   loading: true,
   error: null,
 };
-export const addOrderReducers = (
-  state: AddOrderState = AddOrderInitialState,
-  action: AddOrderAction
+export const orderAddedReducers = (
+  state: OrderAddedState = OrderAddedInitialState,
+  action: AddOrdersAction
 ) => {
   switch (action.type) {
     case ORDER_ADD_REQUEST:

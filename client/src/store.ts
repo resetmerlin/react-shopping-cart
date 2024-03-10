@@ -9,7 +9,7 @@ import {
   cartsReducers,
   productReducers,
   productsReducers,
-  addOrderReducers,
+  orderAddedReducers,
   addStaticOrdersReducers,
 } from './reducer';
 
@@ -20,7 +20,7 @@ const reducer = combineReducers({
   cartAddInfo: cartAddReducers,
   cartDeleteInfo: cartDeleteReducers,
   ordersInfo: ordersReducers,
-  addOrderInfo: addOrderReducers,
+  orderAddedInfo: orderAddedReducers,
   addStaticOrderInfo: addStaticOrdersReducers,
 });
 
