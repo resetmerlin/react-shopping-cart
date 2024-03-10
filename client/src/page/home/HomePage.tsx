@@ -5,6 +5,13 @@ import { getProductsAction } from '../../actions';
 import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
 import { Product } from '../../types';
 
+/**
+ *  ## Responsible for conducting business logic of the home page
+ *
+ * - Renders given component
+ * - Add dependencies from react, react router dom, components, actions, hooks, types
+ * - Fetch products if there is no products data
+ */
 export default function HomePage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
