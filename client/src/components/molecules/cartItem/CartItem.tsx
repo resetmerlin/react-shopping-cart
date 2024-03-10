@@ -1,33 +1,70 @@
+import { useEffect, useState } from 'react';
+import { Button, Input } from '../../atom';
 import styles from './CartItem.module.scss';
 
-export default function CartItem() {
+type IProps = {
+  name: string;
+  price: number;
+  id: number;
+  imageUrl: string;
+  selectItems: (id: number) => void;
+  updateItemPrice: (id: number, price: number, quantity: number) => void;
+};
+
+export default function CartItem({
+  name,
+  price,
+  imageUrl,
+  selectItems,
+  id,
+  updateItemPrice,
+}: IProps) {
+  const [qty, setQty] = useState(1);
+
+  const increaseQty = () => {
+    setQty(qty + 1);
+  };
+
+  const decreaseQty = () => {
+    if (qty === 1) return;
+    setQty(qty - 1);
+  };
+
+  const priceWithQty = price * qty;
+
+  // If priceWithQty value changes call callback function to update the price
+  useEffect(() => {
+    if (priceWithQty) {
+      updateItemPrice(id, priceWithQty, qty);
+    }
+  }, [id, priceWithQty, qty, updateItemPrice]);
+
   return (
     <div className={styles.cart__container}>
       <div className="flex gap-15 mt-10">
-        {/* Need to make into Atom */}
-        <input className="checkbox" name="checkbox" type="checkbox" checked />
-        <img
-          className="w-144 h-144"
-          src="./images/product.png"
-          alt="PET보틀-정사각(420ml)"
+        <Input
+          className="checkbox"
+          name="checkbox"
+          type="checkbox"
+          onClick={() => selectItems(id)}
         />
-        <span className={styles.cart__name}>PET보틀-정사각(420ml)</span>
+        <img className="w-144 h-144" src={imageUrl} alt={name} />
+        <span className={styles.cart__name}>{name}</span>
       </div>
       <div className="flex-col-center justify-end gap-15">
         <img className="cart-trash-svg" src="./svgs/trash.svg" alt="삭제" />
         <div className={styles.number__input__container}>
-          <input type="number" className={styles.number__input} value="1" />
+          <Input type="number" className={styles.number__input} value={qty} />
           <div>
-            {/* Need to make into Atom */}
-            <button className={styles.number__input__button} type="button">
+            <Button purpose="number" type="button" onClick={increaseQty}>
               ▲
-            </button>
-            <button className={styles.number__input__button} type="button">
+            </Button>
+            <Button purpose="number" type="button" onClick={decreaseQty}>
               ▼
-            </button>
+            </Button>
           </div>
         </div>
-        <span className={styles.cart__price}>123,456원</span>
+        <span className={styles.cart__price}>{priceWithQty}</span>
       </div>
     </div>
   );
