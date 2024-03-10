@@ -31,7 +31,7 @@ export type ProductsAction =
   | ProductsSuccessAction
   | ProductsFailAction;
 
-export const productsAction =
+export const getProductsAction =
   () => async (dispatch: Dispatch<ProductsAction>) => {
     try {
       dispatch({ type: PRODUCTS_REQUEST });
