@@ -11,7 +11,7 @@ import {
   productsReducers,
   orderAddedReducers,
   addStaticOrdersReducers,
-} from './reducer';
+} from './reducers';
 
 const reducer = combineReducers({
   productsInfo: productsReducers,
