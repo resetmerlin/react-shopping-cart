@@ -71,7 +71,10 @@ export const cartAddReducers = (
       return state;
   }
 };
-const cartDeleteInitialState = {};
+const cartDeleteInitialState = {
+  carts: false,
+  loading: true,
+};
 
 export const cartDeleteReducers = (
   state = cartDeleteInitialState,
@@ -79,7 +82,7 @@ export const cartDeleteReducers = (
 ) => {
   switch (action.type) {
     case CART_DELETE_REQUEST:
-      return { ...state, loding: true, error: null };
+      return { ...state, loading: true, error: null };
 
     case CART_DELETE_SUCCESS:
       return {
