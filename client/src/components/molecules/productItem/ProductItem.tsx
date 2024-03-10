@@ -1,19 +1,48 @@
 import { Link } from 'react-router-dom';
 import styles from './ProductItem.module.scss';
+import { Button } from '../../atom';
 
-export default function ProductItem() {
+type IProps = {
+  id: number;
+  name: string;
+  price: number;
+  imageUrl: string;
+  addToCart: (
+    name: string,
+    id: number,
+    price: number,
+    imageUrl: string
+  ) => void;
+};
+export default function ProductItem({
+  id,
+  name,
+  price,
+  imageUrl,
+  addToCart,
+}: IProps) {
   return (
-    <Link to="/product">
-      <img src="./images/product.png" alt="PET보틀-정사각(420ml)" />
+    <div>
+      <Link to={`/product/${id}`}>
+        <img
+          src={imageUrl}
+          alt={name}
+          className={styles.productItem__info__image}
+        />
+      </Link>
       <div className="flex justify-between w-280 p-5">
         <div className={styles.productItem__info}>
-          <span className={styles.productItem__info__name}>
-            PET보틀-정사각(420ml)
-          </span>
-          <span className={styles.productItem__info__price}>43,000원</span>
+          <span className={styles.productItem__info__name}>{name}</span>
+          <span className={styles.productItem__info__price}>{price}</span>
         </div>
-        <img src="./svgs/cart.svg" alt="장바구니" />
+        <Button
+          type="button"
+          purpose="delete"
+          onClick={() => addToCart(name, id, price, imageUrl)}
+        >
+          <img src="./svgs/cart.svg" alt="장바구니" />
+        </Button>
       </div>
-    </Link>
+    </div>
   );
 }
