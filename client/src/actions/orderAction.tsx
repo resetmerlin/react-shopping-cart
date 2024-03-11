@@ -9,7 +9,7 @@ import {
   ORDER_ADD_FAIL,
   STATIC_ORDER_ADD,
 } from '../constants';
-import { IOrder, IOrderDetail } from '../types';
+import { IOrder, IOrderDetail, IStaticOrderDetail } from '../types';
 
 type OrdersRequestAction = {
   type: typeof ORDERS_REQUEST;
@@ -130,11 +130,11 @@ export const addOrdersAction =
 
 export type AddStaticOrdersAction = {
   type: typeof STATIC_ORDER_ADD;
-  payload: IOrderDetail[];
+  payload: IStaticOrderDetail[];
 };
 
 export const addStaticOrdersAction =
-  (orderDetails: IOrderDetail[]) =>
+  (orderDetails: IStaticOrderDetail[]) =>
   async (dispatch: Dispatch<AddStaticOrdersAction>) => {
     dispatch({
       type: STATIC_ORDER_ADD,
