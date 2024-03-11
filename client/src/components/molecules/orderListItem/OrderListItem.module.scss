@@ -1,0 +1,16 @@
+.order__list__item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px 40px;
+
+  border: 1px solid #aaaaaa;
+}
+.order__name {
+  font-size: 20px;
+}
+
+.order__info {
+  color: #888888;
+}
