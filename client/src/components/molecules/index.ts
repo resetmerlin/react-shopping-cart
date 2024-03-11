@@ -5,3 +5,5 @@ export * from './cartItem';
 export * from './cartStatusHeader';
 export * from './orderItem';
 export * from './orderSummary';
+export * from './orderListItem';
+export * from './orderListHeader';
