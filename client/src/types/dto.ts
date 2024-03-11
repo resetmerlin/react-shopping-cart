@@ -38,12 +38,19 @@ export interface IOrderDetail extends IProduct {
   quantity: number;
 }
 
+export interface IStaticOrderDetail extends IOrderDetail {
+  key: number;
+}
+
 export interface IOrder {
   id: number;
   orderDetails: IOrderDetail[];
 }
 
-export interface GetOrderResponse extends IOrder {}
+export interface GetOrderResponse extends IOrder {
+  key: number;
+  response: IOrderDetail[];
+}
 
 export interface PostOrderResponse {
   orderDetails: IOrderDetail[];
