@@ -6,6 +6,7 @@ import styles from './Button.module.scss';
 interface IProps extends TButtonElementProps {
   type: 'submit' | 'button';
   purpose: 'primary' | 'nav' | 'number' | 'delete' | 'product';
+  size: 'small' | 'medium';
 }
 
 export default function Button({
@@ -13,13 +14,14 @@ export default function Button({
   className = '',
   type,
   purpose,
+  size,
   ...props
 }: IProps) {
   return (
     <button
       {...props}
       type={type}
-      className={`${className}   ${styles[purpose]}`}
+      className={`${className}   ${styles[purpose]} ${styles[size]}`}
     >
       {children}
     </button>

@@ -4,13 +4,6 @@
   color: white;
   width: 100%;
   padding: 20px;
-
-  &__small {
-    background: #2ac1bc;
-    font-size: 20px;
-    color: white;
-    padding: 14px 28px;
-  }
 }
 .nav {
   font-weight: 500;
@@ -40,4 +33,13 @@
   background: #73675c;
   font-size: 24px;
   color: white;
+}
+
+.small {
+  font-size: 20px;
+  padding: 14px 28px;
+  width: 10rem;
+}
+
+.medium {
 }
