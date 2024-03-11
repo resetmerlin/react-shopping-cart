@@ -1,5 +1,11 @@
 import { createBrowserRouter } from 'react-router-dom';
-import { CartPage, HomePage, OrderPage, ProductPage } from '../pages';
+import {
+  CartPage,
+  HomePage,
+  OrderPage,
+  ProductPage,
+  OrderListPage,
+} from '../pages';
 
 const router = createBrowserRouter([
   {
@@ -18,6 +24,10 @@ const router = createBrowserRouter([
   {
     path: '/order',
     element: <OrderPage />,
+  },
+  {
+    path: '/orderList',
+    element: <OrderListPage />,
   },
 ]);
 
