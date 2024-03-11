@@ -45,6 +45,7 @@ export default function ProductItem({
         <Button
           type="button"
           purpose="delete"
+          size="medium"
           onClick={() =>
             addToCart(name, id, price, imageUrl, navigate, dispatch)
           }

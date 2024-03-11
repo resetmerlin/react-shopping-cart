@@ -45,6 +45,7 @@ export default function ProductItemDetails({
         className="flex-center mt-20"
         type="submit"
         purpose="product"
+        size="medium"
         onClick={() => addToCart(name, id, price, imageUrl, navigate, dispatch)}
       >
         장바구니

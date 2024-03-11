@@ -10,12 +10,12 @@ export default function Header() {
       </Link>
       <div className="flex gap-15">
         <Link to="/cart" className="flex-center">
-          <Button type="button" purpose="nav">
+          <Button type="button" purpose="nav" size="medium">
             장바구니
           </Button>
         </Link>{' '}
-        <Link to="/order" className="flex-center">
-          <Button type="button" purpose="nav">
+        <Link to="/orderList" className="flex-center">
+          <Button type="button" purpose="nav" size="medium">
             주문목록
           </Button>
         </Link>

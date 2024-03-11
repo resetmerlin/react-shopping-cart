@@ -28,6 +28,7 @@ export default function CartSummary({
             type="button"
             purpose="primary"
             onClick={addToOrder}
+            size="medium"
           >
             주문하기({cartsLength}개)
           </Button>

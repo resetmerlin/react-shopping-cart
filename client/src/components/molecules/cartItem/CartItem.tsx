@@ -56,10 +56,20 @@ export default function CartItem({
         <div className={styles.number__input__container}>
           <Input type="number" className={styles.number__input} value={qty} />
           <div>
-            <Button purpose="number" type="button" onClick={increaseQty}>
+            <Button
+              purpose="number"
+              type="button"
+              onClick={increaseQty}
+              size="medium"
+            >
               ▲
             </Button>
-            <Button purpose="number" type="button" onClick={decreaseQty}>
+            <Button
+              purpose="number"
+              type="button"
+              onClick={decreaseQty}
+              size="medium"
+            >
               ▼
             </Button>
           </div>

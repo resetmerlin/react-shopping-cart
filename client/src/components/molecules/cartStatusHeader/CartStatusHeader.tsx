@@ -27,7 +27,12 @@ export default function CartStatusHeader({
             선택해제
           </label>
         </div>
-        <Button purpose="delete" type="button" onClick={deleteItems}>
+        <Button
+          purpose="delete"
+          type="button"
+          onClick={deleteItems}
+          size="medium"
+        >
           상품삭제
         </Button>
       </div>{' '}
