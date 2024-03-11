@@ -13,7 +13,7 @@ import {
   AddStaticOrdersAction,
   AddOrdersAction,
 } from '../actions';
-import { IOrder, IOrderDetail } from '../types';
+import { IOrder, IOrderDetail, IStaticOrderDetail } from '../types';
 
 type OrdersState = {
   orders: IOrder[];
@@ -83,7 +83,7 @@ export const orderAddedReducers = (
   }
 };
 type AddStaticOrderState = {
-  orders: IOrderDetail[];
+  orders: IStaticOrderDetail[];
   loading: boolean;
   error?: string | null;
 };
