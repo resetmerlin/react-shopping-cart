@@ -15,7 +15,7 @@ import {
   Loader,
 } from '../../components';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { IOrderDetail } from '../../types';
+import { IStaticOrderDetail } from '../../types';
 
 export default function CartPage() {
   const dispatch = useAppDispatch();
@@ -55,17 +55,17 @@ export default function CartPage() {
     .filter((cart) => checkedIdLists.includes(cart.id))
     .map((cart) => ({
       ...cart,
-      product: cart.product as IOrderDetail, // Cast product to OrderDetail
+      product: cart.product as IStaticOrderDetail, // Cast product to OrderDetail
     }));
 
   const selectAllItems = (e: React.FormEvent<HTMLInputElement>) => {};
 
   const updateItemPrice = (id: number, price: number, quantity: number) => {
     // check if the selected item is checked if not, return it
-    if (!checkedIdLists.includes(id)) return;
+    if (![...checkedIdLists].includes(id)) return;
 
     /** Updated carts data with new price */
-    checkedItems = checkedItems.map((cart) => {
+    checkedItems = [...checkedItems].map((cart) => {
       if (cart.id === id) {
         return {
           id: cart.id,
@@ -73,7 +73,7 @@ export default function CartPage() {
             ...cart.product,
             price,
             quantity,
-          } as IOrderDetail,
+          } as IStaticOrderDetail,
         };
       }
       return cart;
@@ -89,7 +89,7 @@ export default function CartPage() {
   };
 
   const addToOrder = () => {
-    const orderDetails = checkedItems.map((item) => {
+    const orderDetails = [...checkedItems].map((item) => {
       return {
         key: item.id,
         id: item.product.id,
@@ -97,7 +97,7 @@ export default function CartPage() {
         name: item.product.name,
         price: item.product.price,
         quantity: item.product.quantity,
-      };
+      } as IStaticOrderDetail;
     });
 
     dispatch(addStaticOrdersAction(orderDetails));
