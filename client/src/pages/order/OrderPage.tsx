@@ -9,6 +9,13 @@ import {
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { addOrdersAction } from '../../actions';
 
+/**
+ *  ## Responsible for conducting business logic of the order page
+ *
+ * - Renders given component
+ * - Add dependencies from react, react router dom, components, actions, hooks
+ * - Get static orders data; static means that there is no api call
+ */
 export default function OrderPage() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -17,7 +24,7 @@ export default function OrderPage() {
   );
   const { orders: staticOrders } = addStaticOrderInfo;
 
-  const totalPrice = staticOrders?.reduce((prev, curr) => {
+  const totalPrice = [...staticOrders]?.reduce((prev, curr) => {
     const value = prev + curr.price;
     return value;
   }, 0);
