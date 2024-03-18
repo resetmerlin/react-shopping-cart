@@ -9,6 +9,13 @@ import {
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getOrdersAction } from '../../actions';
 
+/**
+ *  ## Responsible for conducting business logic of the orderList page
+ *
+ * - Renders given component
+ * - Add dependencies from react, react, components, actions, hooks
+ * - Fetch orders if there is no orders data
+ */
 export default function OrderListPage() {
   const dispatch = useAppDispatch();
   const ordersInfo = useAppSelector((state) => state.ordersInfo);
