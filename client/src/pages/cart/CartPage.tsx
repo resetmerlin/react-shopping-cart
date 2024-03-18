@@ -64,7 +64,7 @@ export default function CartPage() {
     // check if the selected item is checked if not, return it
     if (![...checkedIdLists].includes(id)) return;
 
-    /** Updated carts data with new price */
+    // Updated carts data with new price with quantity
     checkedItems = [...checkedItems].map((cart) => {
       if (cart.id === id) {
         return {
