@@ -1,6 +1,6 @@
-export const CART_REQUEST = 'CART_REQUEST';
-export const CART_SUCCESS = 'CART_SUCCESS';
-export const CART_FAIL = 'CART_FAIL';
+export const GET_CART_REQUEST = 'GET_CART_REQUEST';
+export const GET_CART_SUCCESS = 'GET_CART_SUCCESS';
+export const GET_CART_FAIL = 'GET_CART_FAIL';
 
 export const CART_ADD_REQUEST = 'CART_ADD_REQUEST';
 export const CART_ADD_SUCCESS = 'CART_ADD_SUCCESS';

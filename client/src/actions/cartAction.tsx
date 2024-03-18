@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { Dispatch } from 'redux';
 import {
-  CART_REQUEST,
-  CART_SUCCESS,
-  CART_FAIL,
+  GET_CART_REQUEST,
+  GET_CART_SUCCESS,
+  GET_CART_FAIL,
   CART_ADD_REQUEST,
   CART_ADD_SUCCESS,
   CART_ADD_FAIL,
@@ -13,51 +13,55 @@ import {
 } from '../constants';
 import { ICart, IProduct } from '../types';
 
-type CartRequestAction = {
-  type: typeof CART_REQUEST;
+type GetCartRequestAction = {
+  type: typeof GET_CART_REQUEST;
 };
 
-type CartSuccessAction = {
-  type: typeof CART_SUCCESS;
+type GetCartSuccessAction = {
+  type: typeof GET_CART_SUCCESS;
   payload: ICart[];
 };
 
-type CartFailAction = {
-  type: typeof CART_FAIL;
+type GetCartFailAction = {
+  type: typeof GET_CART_FAIL;
   payload: string;
 };
 
-export type CartAction = CartRequestAction | CartSuccessAction | CartFailAction;
+export type GetCartAction =
+  | GetCartRequestAction
+  | GetCartSuccessAction
+  | GetCartFailAction;
 
-export const getCartsAction = () => async (dispatch: Dispatch<CartAction>) => {
-  try {
-    dispatch({ type: CART_REQUEST });
+export const getCartsAction =
+  () => async (dispatch: Dispatch<GetCartAction>) => {
+    try {
+      dispatch({ type: GET_CART_REQUEST });
 
-    const { data } = await axios.get<ICart[]>('http://localhost:3003/carts');
+      const { data } = await axios.get<ICart[]>('http://localhost:3003/carts');
 
-    dispatch({
-      type: CART_SUCCESS,
-      payload: data,
-    });
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      const message =
-        error.response && error.response.data.message
-          ? error.response.data.message
-          : error.message;
       dispatch({
-        type: CART_FAIL,
-        payload: message,
+        type: GET_CART_SUCCESS,
+        payload: data,
       });
-    } else {
-      // Handle non-Axios errors
-      dispatch({
-        type: CART_FAIL,
-        payload: 'An unknown error occurred',
-      });
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const message =
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message;
+        dispatch({
+          type: GET_CART_FAIL,
+          payload: message,
+        });
+      } else {
+        // Handle non-Axios errors
+        dispatch({
+          type: GET_CART_FAIL,
+          payload: 'An unknown error occurred',
+        });
+      }
     }
-  }
-};
+  };
 
 type CartAddRequestAction = {
   type: typeof CART_ADD_REQUEST;
