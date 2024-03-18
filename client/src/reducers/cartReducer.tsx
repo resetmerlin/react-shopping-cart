@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/default-param-last */
 import {
-  CART_REQUEST,
-  CART_SUCCESS,
-  CART_FAIL,
+  GET_CART_REQUEST,
+  GET_CART_SUCCESS,
+  GET_CART_FAIL,
   CART_ADD_REQUEST,
   CART_ADD_SUCCESS,
   CART_ADD_FAIL,
@@ -10,37 +10,37 @@ import {
   CART_DELETE_SUCCESS,
   CART_DELETE_FAIL,
 } from '../constants';
-import { CartAction, CartAddAction, CartDeleteAction } from '../actions';
+import { GetCartAction, CartAddAction, CartDeleteAction } from '../actions';
 import { ICart, GetCartResponse } from '../types';
 
-type CartsState = {
+type GetCartsState = {
   carts: ICart[];
   loading: boolean;
   error?: string | null;
 };
 
-const cartsInitialState: CartsState = {
+const getCartsInitialState: GetCartsState = {
   carts: [],
   loading: true,
   error: null,
 };
 
 export const cartsReducers = (
-  state: CartsState = cartsInitialState,
-  action: CartAction
+  state: GetCartsState = getCartsInitialState,
+  action: GetCartAction
 ) => {
   switch (action.type) {
-    case CART_REQUEST:
+    case GET_CART_REQUEST:
       return { ...state, loding: true, error: null };
 
-    case CART_SUCCESS:
+    case GET_CART_SUCCESS:
       return {
         loading: false,
         carts: action.payload,
         error: null,
       };
 
-    case CART_FAIL:
+    case GET_CART_FAIL:
       return { loading: false, error: action.payload, carts: [] };
 
     default:
