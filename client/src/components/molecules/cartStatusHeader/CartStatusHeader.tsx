@@ -4,14 +4,9 @@ import styles from './CartStatusHeader.module.scss';
 
 type IProps = {
   deleteItems: () => void;
-  selectAllItems: (e: React.FormEvent<HTMLInputElement>) => void;
   cartsLength: number;
 };
-export default function CartStatusHeader({
-  deleteItems,
-  selectAllItems,
-  cartsLength,
-}: IProps) {
+export default function CartStatusHeader({ deleteItems, cartsLength }: IProps) {
   return (
     <>
       <div className="flex justify-between items-center">
@@ -21,7 +16,6 @@ export default function CartStatusHeader({
             name="checkbox"
             id="checkbox"
             type="checkbox"
-            onClick={selectAllItems}
           />
           <label className={styles.checkbox__label} htmlFor="checkbox">
             선택해제
