@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import {
   Header,
   Loader,
@@ -6,8 +5,7 @@ import {
   OrderListHeader,
   OrderListItem,
 } from '../../components';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getOrdersAction } from '../../actions';
+import useOrderListPage from './OrderListPage.hook';
 
 /**
  *  ## Responsible for conducting business logic of the orderList page
@@ -17,24 +15,15 @@ import { getOrdersAction } from '../../actions';
  * - Fetch orders if there is no orders data
  */
 export default function OrderListPage() {
-  const dispatch = useAppDispatch();
-  const ordersInfo = useAppSelector((state) => state.ordersInfo);
-  const { loading, orders } = ordersInfo;
-
-  useEffect(() => {
-    if (!orders.length) {
-      dispatch(getOrdersAction());
-    }
-  }, [dispatch, orders.length]);
-
+  const { state } = useOrderListPage();
   return (
     <div className="root">
       <Header />
       <OrderList.Section>
-        {loading ? (
+        {state.loading ? (
           <Loader />
         ) : (
-          orders?.map((order) => {
+          state.orders?.map((order) => {
             return (
               <OrderList.Group key={order?.id}>
                 <OrderListHeader id={order?.id} />

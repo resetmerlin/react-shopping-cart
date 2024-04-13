@@ -1,9 +1,6 @@
-import { useEffect, useMemo } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { Header, Loader, Product, ProductItemDetails } from '../../components';
-import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
 import { IProduct } from '../../types';
-import { getProductAction } from '../../actions';
+import useProductPage from './ProductPage.hook';
 /**
  *  ## Responsible for conducting business logic of the product page
  *
@@ -13,56 +10,32 @@ import { getProductAction } from '../../actions';
  * - Go home page if there is no params
  */
 export default function ProductPage() {
-  const params = useParams();
-  const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-  const productId = params?.id ? +params.id : undefined;
-  const productsInfo = useAppSelector((state) => state.productsInfo);
-  const productInfo = useAppSelector((state) => state.productInfo);
-  const { products } = productsInfo;
-  const { product: dynamicProduct } = productInfo;
-
-  /** product value using exisiting products data, this is why the name is static */
-  const staticProduct = useMemo(
-    () =>
-      [...products] &&
-      ([...products].find((val) => val.id === productId) as IProduct),
-    [productId, products]
-  );
-
-  // if there is no params, navigate to home
-  useEffect(() => {
-    if (!productId) navigate('/');
-  }, [productId, navigate]);
-
-  // if there is no single product data, fetch(dynamic) single product
-  useEffect(() => {
-    let ignore = false;
-    if (!ignore && !staticProduct && productId) {
-      dispatch(getProductAction(productId));
-    }
-
-    return () => {
-      ignore = true;
-    };
-  }, [dispatch, productId, staticProduct, products]);
-
+  const { state, action } = useProductPage();
   return (
     <div className="root">
       <Header />
       <Product.Section>
-        {!dynamicProduct && !staticProduct ? (
+        {!state.dynamicProduct && !state.staticProduct ? (
           <Loader />
         ) : (
           <ProductItemDetails
-            id={staticProduct?.id || (dynamicProduct as IProduct)?.id}
-            addToCart={useAddToCart}
-            dispatch={dispatch}
-            navigate={navigate}
-            name={staticProduct?.name || (dynamicProduct as IProduct)?.name}
-            price={staticProduct?.price || (dynamicProduct as IProduct)?.price}
+            id={
+              state.staticProduct?.id || (state.dynamicProduct as IProduct)?.id
+            }
+            addToCart={action.useAddToCart}
+            dispatch={state.dispatch}
+            navigate={state.navigate}
+            name={
+              state.staticProduct?.name ||
+              (state.dynamicProduct as IProduct)?.name
+            }
+            price={
+              state.staticProduct?.price ||
+              (state.dynamicProduct as IProduct)?.price
+            }
             imageUrl={
-              staticProduct?.imageUrl || (dynamicProduct as IProduct)?.imageUrl
+              state.staticProduct?.imageUrl ||
+              (state.dynamicProduct as IProduct)?.imageUrl
             }
           />
         )}

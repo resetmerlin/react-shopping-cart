@@ -1,9 +1,6 @@
-import { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Header, Home, Loader, ProductItem } from '../../components';
-import { getProductsAction } from '../../actions';
-import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
 import { IProduct } from '../../types';
+import useHomePage from './HomePage.hook';
 
 /**
  *  ## Responsible for conducting business logic of the home page
@@ -13,31 +10,16 @@ import { IProduct } from '../../types';
  * - Fetch products if there is no products data
  */
 export default function HomePage() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const productsInfo = useAppSelector((state) => state.productsInfo);
-  const { loading, products } = productsInfo;
-
-  // if there is no products,fetch it!
-  useEffect(() => {
-    let ignore = false;
-    if (!ignore && !products?.length) {
-      dispatch(getProductsAction());
-    }
-
-    return () => {
-      ignore = true;
-    };
-  }, [dispatch, products]);
+  const { state, action } = useHomePage();
 
   return (
     <div className="root">
       <Header />
       <Home.Section>
-        {loading ? (
+        {state.loading ? (
           <Loader />
         ) : (
-          products?.map((product: IProduct) => {
+          state.products?.map((product: IProduct) => {
             return (
               <ProductItem
                 key={product?.id}
@@ -45,9 +27,9 @@ export default function HomePage() {
                 name={product?.name}
                 price={product?.price}
                 imageUrl={product?.imageUrl}
-                navigate={navigate}
-                dispatch={dispatch}
-                addToCart={useAddToCart}
+                navigate={state.navigate}
+                dispatch={state.dispatch}
+                addToCart={action.addToCart}
               />
             );
           })

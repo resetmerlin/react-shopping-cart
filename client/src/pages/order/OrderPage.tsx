@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import {
   GroupHeader,
   Header,
@@ -6,8 +5,7 @@ import {
   OrderItem,
   OrderSummary,
 } from '../../components';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addOrdersAction } from '../../actions';
+import useOrderPage from './OrderPage.hook';
 
 /**
  *  ## Responsible for conducting business logic of the order page
@@ -17,32 +15,7 @@ import { addOrdersAction } from '../../actions';
  * - Get static orders data; static means that there is no api call
  */
 export default function OrderPage() {
-  const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const addStaticOrderInfo = useAppSelector(
-    (state) => state.addStaticOrderInfo
-  );
-  const { orders: staticOrders } = addStaticOrderInfo;
-
-  const totalPrice = [...staticOrders]?.reduce((prev, curr) => {
-    const value = prev + curr.price;
-    return value;
-  }, 0);
-
-  const addToOrderLists = () => {
-    const orderDetails = [...staticOrders].map((item) => {
-      return {
-        id: item.id,
-        imageUrl: item.imageUrl,
-        name: item.name,
-        price: item.price,
-        quantity: item.quantity,
-      };
-    });
-
-    dispatch(addOrdersAction(orderDetails));
-    navigate('/orderList');
-  };
+  const { state, action } = useOrderPage();
 
   return (
     <div className="root">
@@ -51,10 +24,12 @@ export default function OrderPage() {
         <GroupHeader>주문/결제</GroupHeader>
         <div className="flex">
           <Order.Left>
-            <h3 className="order-title">주문 상품({staticOrders?.length}건)</h3>
+            <h3 className="order-title">
+              주문 상품({state.staticOrders?.length}건)
+            </h3>
             <hr className="divide-line-gray mt-10" />
 
-            {staticOrders?.map((order) => {
+            {state.staticOrders?.map((order) => {
               return (
                 <div key={order?.key}>
                   <OrderItem
@@ -69,8 +44,8 @@ export default function OrderPage() {
           </Order.Left>
           <Order.Right>
             <OrderSummary
-              price={totalPrice}
-              addToOrderLists={addToOrderLists}
+              price={state.totalPrice}
+              addToOrderLists={action.addToOrderLists}
             />
           </Order.Right>
         </div>
