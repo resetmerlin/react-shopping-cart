@@ -1,6 +1,6 @@
 import { NavigateFunction } from 'react-router-dom';
-import { addToCartAction } from '../actions';
 import { AppDispatch } from '../redux/store';
+import { addToCartAction } from '../redux';
 
 // eslint-disable-next-line import/prefer-default-export
 export const useAddToCart = (

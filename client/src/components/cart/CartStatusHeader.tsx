@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import { Button, Input } from '../../atom';
-import styles from './CartStatusHeader.module.scss';
+import { Button, Input } from '..';
+import styles from './Cart.module.scss';
 
 type IProps = {
   deleteItems: () => void;

@@ -1,4 +1,4 @@
-import { Header, Loader, Product, ProductItemDetails } from '../../components';
+import { Header, Loader, Product } from '../../components';
 import { IProduct } from '../../types';
 import useProductPage from './ProductPage.hook';
 /**
@@ -18,7 +18,7 @@ export default function ProductPage() {
         {!state.dynamicProduct && !state.staticProduct ? (
           <Loader />
         ) : (
-          <ProductItemDetails
+          <Product.ItemDetails
             id={
               state.staticProduct?.id || (state.dynamicProduct as IProduct)?.id
             }

@@ -1,4 +1,4 @@
-import styles from './OrderListHeader.module.scss';
+import styles from './OrderList.module.scss';
 
 type IProps = {
   id: number;

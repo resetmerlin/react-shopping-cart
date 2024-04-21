@@ -1,5 +1,5 @@
-import { Button, HightlightText } from '../../atom';
-import styles from './CartSummary.module.scss';
+import { Button, HightlightText } from '..';
+import styles from './Cart.module.scss';
 
 type IProps = {
   cartPrice: number;

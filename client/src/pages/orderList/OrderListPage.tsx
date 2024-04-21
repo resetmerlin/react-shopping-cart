@@ -1,11 +1,5 @@
 import { Key } from 'react';
-import {
-  Header,
-  Loader,
-  OrderList,
-  OrderListHeader,
-  OrderListItem,
-} from '../../components';
+import { Header, Loader, OrderList } from '../../components';
 import useOrderListPage from './OrderListPage.hook';
 
 /**
@@ -27,7 +21,7 @@ export default function OrderListPage() {
           state.orders?.map((order) => {
             return (
               <OrderList.Group key={order?.id}>
-                <OrderListHeader id={order?.id} />
+                <OrderList.Header id={order?.id} />
                 {order?.orderDetails?.map(
                   (orderDetail: {
                     id: Key | null | undefined;
@@ -37,7 +31,7 @@ export default function OrderListPage() {
                     quantity: number;
                   }) => {
                     return (
-                      <OrderListItem
+                      <OrderList.Item
                         key={orderDetail.id}
                         imageUrl={orderDetail.imageUrl}
                         name={orderDetail.name}

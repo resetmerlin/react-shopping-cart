@@ -1,10 +1,4 @@
-import {
-  GroupHeader,
-  Header,
-  Order,
-  OrderItem,
-  OrderSummary,
-} from '../../components';
+import { GroupHeader, Header, Order } from '../../components';
 import useOrderPage from './OrderPage.hook';
 
 /**
@@ -32,7 +26,7 @@ export default function OrderPage() {
             {state.staticOrders?.map((order) => {
               return (
                 <div key={order?.key}>
-                  <OrderItem
+                  <Order.Item
                     name={order?.name}
                     quantity={order?.quantity}
                     imageUrl={order?.imageUrl}
@@ -43,7 +37,7 @@ export default function OrderPage() {
             })}
           </Order.Left>
           <Order.Right>
-            <OrderSummary
+            <Order.Summary
               price={state.totalPrice}
               addToOrderLists={action.addToOrderLists}
             />

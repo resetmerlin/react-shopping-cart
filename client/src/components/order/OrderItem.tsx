@@ -1,4 +1,4 @@
-import styles from './OrderItem.module.scss';
+import styles from './Order.module.scss';
 
 type IProps = {
   name: string;

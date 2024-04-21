@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import styles from './CartItem.module.scss';
-import { Button, Input } from '../..';
+import styles from './Cart.module.scss';
+import { Button, Input } from '..';
 
 type IProps = {
   name: string;

@@ -1,4 +1,4 @@
-import { Header, Home, Loader, ProductItem } from '../../components';
+import { Header, Home, Loader, Product } from '../../components';
 import { IProduct } from '../../types';
 import useHomePage from './HomePage.hook';
 
@@ -21,7 +21,7 @@ export default function HomePage() {
         ) : (
           state.products?.map((product: IProduct) => {
             return (
-              <ProductItem
+              <Product.Item
                 key={product?.id}
                 id={product?.id}
                 name={product?.name}

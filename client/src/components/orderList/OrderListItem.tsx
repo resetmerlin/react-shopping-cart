@@ -1,5 +1,5 @@
-import { Button } from '../../atom';
-import styles from './OrderListItem.module.scss';
+import { Button } from '..';
+import styles from './OrderList.module.scss';
 
 type IProps = {
   name: string;

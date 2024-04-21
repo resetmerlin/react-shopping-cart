@@ -1,5 +1,5 @@
-import { Button, HightlightText } from '../../atom';
-import styles from './OrderSummary.module.scss';
+import { Button, HightlightText } from '..';
+import styles from './Order.module.scss';
 
 type IProps = {
   price: number;

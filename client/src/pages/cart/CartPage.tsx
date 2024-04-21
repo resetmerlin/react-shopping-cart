@@ -1,12 +1,4 @@
-import {
-  Cart,
-  CartItem,
-  CartStatusHeader,
-  CartSummary,
-  GroupHeader,
-  Header,
-  Loader,
-} from '../../components';
+import { Cart, GroupHeader, Header, Loader } from '../../components';
 import useCartPage from './CartPage.hook';
 
 export default function CartPage() {
@@ -19,7 +11,7 @@ export default function CartPage() {
         <GroupHeader>장바구니</GroupHeader>
         <div className="flex">
           <Cart.Left>
-            <CartStatusHeader
+            <Cart.Header
               deleteItems={action.deleteItems}
               cartsLength={state.checkedIdLists?.length}
             />
@@ -30,7 +22,7 @@ export default function CartPage() {
             ) : (
               state.carts?.map((cart) => (
                 <div key={cart?.id}>
-                  <CartItem
+                  <Cart.Item
                     id={cart?.id}
                     name={cart?.product.name}
                     price={cart?.product.price}
@@ -44,7 +36,7 @@ export default function CartPage() {
             )}
           </Cart.Left>
           <Cart.Right>
-            <CartSummary
+            <Cart.Summary
               cartPrice={state.totalPrice}
               cartsLength={state.checkedIdLists?.length}
               addToOrder={action.addToOrder}
