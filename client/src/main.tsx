@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Provider } from 'react-redux';
 import App from './App';
-import './_setting/index.scss';
+import './style/index.scss';
 import store from './redux/store';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
