@@ -1,5 +1,5 @@
 import { NavigateFunction } from 'react-router-dom';
-import { AppDispatch } from '../../../store';
+import { AppDispatch } from '../../../redux/store';
 import { Button } from '../../atom';
 import styles from './ProductItemDetails.module.scss';
 

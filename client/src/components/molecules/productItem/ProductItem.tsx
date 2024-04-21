@@ -1,7 +1,7 @@
 import { Link, NavigateFunction } from 'react-router-dom';
 import styles from './ProductItem.module.scss';
 import { Button } from '../../atom';
-import { AppDispatch } from '../../../store';
+import { AppDispatch } from '../../../redux/store';
 
 type IProps = {
   id: number;
