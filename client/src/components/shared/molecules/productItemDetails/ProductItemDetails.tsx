@@ -1,7 +1,7 @@
 import { NavigateFunction } from 'react-router-dom';
-import { AppDispatch } from '../../../redux/store';
 import { Button } from '../../atom';
 import styles from './ProductItemDetails.module.scss';
+import { AppDispatch } from '../../../../redux';
 
 type IProps = {
   name: string;

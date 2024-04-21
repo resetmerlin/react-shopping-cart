@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { HTMLInputTypeAttribute } from 'react';
-import { TInputElementProps } from '../../../types';
 import styles from './Input.module.scss';
+import { TInputElementProps } from '../../../../types';
 
 interface IProps extends TInputElementProps {
   type: HTMLInputTypeAttribute;

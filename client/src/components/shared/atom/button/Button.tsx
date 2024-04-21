@@ -1,6 +1,6 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable react/button-has-type */
-import { TButtonElementProps } from '../../../types';
+import { TButtonElementProps } from '../../../../types';
 import styles from './Button.module.scss';
 
 interface IProps extends TButtonElementProps {

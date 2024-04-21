@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import styles from './Header.module.scss';
-import { Button } from '../../atom';
+import { Button } from '../..';
 
 export default function Header() {
   return (
