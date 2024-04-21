@@ -2,7 +2,7 @@ import { useEffect, useMemo } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
 import { IProduct } from '../../types';
-import { getProductAction } from '../../actions';
+import { getProductAction } from '../../redux';
 
 const useProductPage = () => {
   const params = useParams();

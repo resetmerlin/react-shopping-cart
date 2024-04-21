@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getOrdersAction } from '../../actions';
+import { getOrdersAction } from '../../redux';
 
 const useOrderListPage = () => {
   const dispatch = useAppDispatch();

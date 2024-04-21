@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getProductsAction } from '../../actions';
+import { getProductsAction } from '../../redux';
 import { useAddToCart, useAppDispatch, useAppSelector } from '../../hooks';
 
 const useHomePage = () => {

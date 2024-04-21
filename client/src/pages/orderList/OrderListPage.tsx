@@ -1,3 +1,4 @@
+import { Key } from 'react';
 import {
   Header,
   Loader,
@@ -27,17 +28,25 @@ export default function OrderListPage() {
             return (
               <OrderList.Group key={order?.id}>
                 <OrderListHeader id={order?.id} />
-                {order?.orderDetails?.map((orderDetail) => {
-                  return (
-                    <OrderListItem
-                      key={orderDetail.id}
-                      imageUrl={orderDetail.imageUrl}
-                      name={orderDetail.name}
-                      price={orderDetail.price}
-                      quantity={orderDetail.quantity}
-                    />
-                  );
-                })}
+                {order?.orderDetails?.map(
+                  (orderDetail: {
+                    id: Key | null | undefined;
+                    imageUrl: string;
+                    name: string;
+                    price: number;
+                    quantity: number;
+                  }) => {
+                    return (
+                      <OrderListItem
+                        key={orderDetail.id}
+                        imageUrl={orderDetail.imageUrl}
+                        name={orderDetail.name}
+                        price={orderDetail.price}
+                        quantity={orderDetail.quantity}
+                      />
+                    );
+                  }
+                )}
               </OrderList.Group>
             );
           })

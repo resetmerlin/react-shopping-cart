@@ -1,12 +1,12 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { IStaticOrderDetail } from '../../types';
 import {
   addStaticOrdersAction,
   cartDeleteAction,
   getCartsAction,
-} from '../../actions';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { IStaticOrderDetail } from '../../types';
+} from '../../redux';
 
 const useCartPage = () => {
   const dispatch = useAppDispatch();

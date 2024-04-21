@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { addOrdersAction } from '../../actions';
+import { addOrdersAction } from '../../redux';
 
 const useOrderPage = () => {
   const dispatch = useAppDispatch();
